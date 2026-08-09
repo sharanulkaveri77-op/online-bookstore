@@ -1,5 +1,7 @@
 const TOKEN_KEY = 'booknook_token';
 
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY);
 }
@@ -16,7 +18,7 @@ export function setUnauthorizedHandler(fn) {
 
 export async function api(path, { method = 'GET', body, token, headers = {} } = {}) {
   const authToken = token !== undefined ? token : getToken();
-  const response = await fetch('/api' + path, {
+  const response = await fetch(API_BASE + '/api' + path, {
     method,
     headers: {
       'Content-Type': 'application/json',

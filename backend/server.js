@@ -1,9 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { ensureSchema } = require('./db/database');
+const { db, ensureSchema } = require('./db/database');
 
 ensureSchema();
+
+if (db.prepare('SELECT COUNT(*) AS n FROM books').get().n === 0) {
+  require('./db/seed');
+}
 
 const app = express();
 
@@ -30,6 +34,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`BookNook API running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`BookNook API running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
