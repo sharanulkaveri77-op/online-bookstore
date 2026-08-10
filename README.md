@@ -2,6 +2,8 @@
 
 A full-stack online bookstore web application built as a college capstone project.
 
+**🔗 Live demo:** https://online-bookstore-blond.vercel.app
+
 - **Frontend:** React 18 (hooks, functional components) + Tailwind CSS 4 + React Router 7
 - **Backend:** Node.js + Express (REST API)
 - **Database:** SQLite via `better-sqlite3` — plain SQL (no ORM), schema written portably for MySQL/PostgreSQL
