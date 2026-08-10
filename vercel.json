@@ -13,7 +13,13 @@
     "backend": {
       "root": "backend/",
       "framework": "express",
-      "entrypoint": "server.js"
+      "entrypoint": "server.js",
+      "functions": {
+        "server.js": {
+          "maxDuration": 10,
+          "runtime": "nodejs22.x"
+        }
+      }
     }
   },
   "rewrites": [
