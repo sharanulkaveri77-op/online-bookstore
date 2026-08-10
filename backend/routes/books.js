@@ -1,9 +1,10 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const { db } = require('../db/database');
-const { authRequired } = require('../middleware/auth');
-const { makeValidator } = require('../middleware/validate');
-const { fuzzySearch } = require('../utils/levenshtein');
+const path = require('path');
+const { db } = require(path.join(__dirname, '..', 'db', 'database'));
+const { authRequired } = require(path.join(__dirname, '..', 'middleware', 'auth'));
+const { makeValidator } = require(path.join(__dirname, '..', 'middleware', 'validate'));
+const { fuzzySearch } = require(path.join(__dirname, '..', 'utils', 'levenshtein'));
 
 const router = express.Router();
 

@@ -1,8 +1,9 @@
 const express = require('express');
-const { db } = require('../db/database');
-const { authRequired } = require('../middleware/auth');
-const { notify } = require('../utils/notifier');
-const { buildInvoicePDF } = require('../utils/invoice');
+const path = require('path');
+const { db } = require(path.join(__dirname, '..', 'db', 'database'));
+const { authRequired } = require(path.join(__dirname, '..', 'middleware', 'auth'));
+const { notify } = require(path.join(__dirname, '..', 'utils', 'notifier'));
+const { buildInvoicePDF } = require(path.join(__dirname, '..', 'utils', 'invoice'));
 
 const router = express.Router();
 

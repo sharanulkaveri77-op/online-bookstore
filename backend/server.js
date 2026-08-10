@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { db, ensureSchema } = require('./db/database');
+const path = require('path');
+const { db, ensureSchema } = require(path.join(__dirname, 'db', 'database'));
 
 ensureSchema();
 
 if (db.prepare('SELECT COUNT(*) AS n FROM books').get().n === 0) {
-  require('./db/seed');
+  require(path.join(__dirname, 'db', 'seed'));
 }
 
 const app = express();
@@ -16,13 +17,13 @@ app.use(express.json());
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/books', require('./routes/books'));
-app.use('/api/catalog', require('./routes/catalog'));
-app.use('/api/cart', require('./routes/cart'));
-app.use('/api/wishlist', require('./routes/wishlist'));
-app.use('/api/orders', require('./routes/orders'));
-app.use('/api/admin', require('./routes/admin'));
+app.use('/api/auth', require(path.join(__dirname, 'routes', 'auth')));
+app.use('/api/books', require(path.join(__dirname, 'routes', 'books')));
+app.use('/api/catalog', require(path.join(__dirname, 'routes', 'catalog')));
+app.use('/api/cart', require(path.join(__dirname, 'routes', 'cart')));
+app.use('/api/wishlist', require(path.join(__dirname, 'routes', 'wishlist')));
+app.use('/api/orders', require(path.join(__dirname, 'routes', 'orders')));
+app.use('/api/admin', require(path.join(__dirname, 'routes', 'admin')));
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });

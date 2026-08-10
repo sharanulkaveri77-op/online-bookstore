@@ -1,8 +1,9 @@
 const express = require('express');
-const { db } = require('../db/database');
-const { authRequired, requireRole } = require('../middleware/auth');
-const { makeValidator } = require('../middleware/validate');
-const { getAlerts } = require('../utils/notifier');
+const path = require('path');
+const { db } = require(path.join(__dirname, '..', 'db', 'database'));
+const { authRequired, requireRole } = require(path.join(__dirname, '..', 'middleware', 'auth'));
+const { makeValidator } = require(path.join(__dirname, '..', 'middleware', 'validate'));
+const { getAlerts } = require(path.join(__dirname, '..', 'utils', 'notifier'));
 
 const router = express.Router();
 router.use(authRequired);

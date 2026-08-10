@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
-const { db, initSchema } = require('./database');
+const path = require('path');
+const { db, initSchema } = require(path.join(__dirname, 'database'));
 
 initSchema();
 

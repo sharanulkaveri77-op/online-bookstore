@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { db } = require('../db/database');
+const path = require('path');
+const { db } = require(path.join(__dirname, '..', 'db', 'database'));
 
 function signToken(user) {
   return jwt.sign(

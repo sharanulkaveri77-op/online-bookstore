@@ -4,3 +4,6 @@ dist/
 backend/data/
 *.log
 .DS_Store
+.vercel/
+
+.vercel

@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: backend
+    runtime: node
+    plan: free
+    entrypoint: backend/server.js
+    buildCommand: npm --prefix backend install
+    startCommand: node backend/server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_PATH
+        value: /tmp/bookstore.db
+
+  - type: web
+    name: frontend
+    runtime: static
+    plan: free
+    buildCommand: npm --prefix frontend install && npm --prefix frontend run build
+    publishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+        value: https://backend.onrender.com
