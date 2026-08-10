@@ -24,4 +24,6 @@ function ensureSchema() {
   }
 }
 
-module.exports = { db, initSchema, ensureSchema };
+module.exports.db = db;
+module.exports.initSchema = initSchema;
+module.exports.ensureSchema = ensureSchema;
