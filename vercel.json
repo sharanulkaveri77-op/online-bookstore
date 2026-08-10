@@ -11,8 +11,7 @@
       ]
     },
     "backend": {
-      "root": "backend/",
-      "framework": "other"
+      "root": "backend/"
     }
   },
   "rewrites": [
